@@ -1,0 +1,56 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.col{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.bodycontainer{
+    width: 100vw;
+    height:100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3a3e45;
+    border-radius: 10px 0px 0px 10px;
+}
+
+.searchbar {
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    background-color: #48484d;
+    padding: 7px;
+    margin: 10px 0;
+    height: clamp(25px, 10vw, 30px); /* Adjust the height of the icon area */
+    width: clamp(250px, 20vw, 300px); /* Adjust the width of the icon area */
+  }
+   
+  .searchIcon  {
+    color: #9f6f6f;
+    margin-right: 5px;
+    background-color: inherit;
+  }
+  
+  .searchInput {
+    border: none;
+    outline: none;
+    background-color: #48484d;
+    flex-grow: 1; /* This allows the input field to take up the remaining space */
+  }
+  
