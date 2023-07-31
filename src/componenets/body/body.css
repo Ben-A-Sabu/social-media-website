@@ -30,27 +30,4 @@
     border-radius: 10px 0px 0px 10px;
 }
 
-.searchbar {
-    display: flex;
-    align-items: center;
-    border-radius: 5px;
-    background-color: #48484d;
-    padding: 7px;
-    margin: 10px 0;
-    height: clamp(25px, 10vw, 30px); /* Adjust the height of the icon area */
-    width: clamp(250px, 20vw, 300px); /* Adjust the width of the icon area */
-  }
-   
-  .searchIcon  {
-    color: #9f6f6f;
-    margin-right: 5px;
-    background-color: inherit;
-  }
-  
-  .searchInput {
-    border: none;
-    outline: none;
-    background-color: #48484d;
-    flex-grow: 1; /* This allows the input field to take up the remaining space */
-  }
-  
+

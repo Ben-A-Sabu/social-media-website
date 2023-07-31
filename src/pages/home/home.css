@@ -17,3 +17,135 @@
     align-items: center;
     
 }
+
+::-webkit-scrollbar{
+    width: 0px;
+    background: transparent;
+}
+
+
+.searchbar {
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    background-color: #48484d;
+    padding: 7px;
+    margin: 10px 0;
+    height: clamp(25px, 10vw, 30px); /* Adjust the height of the icon area */
+    width: clamp(250px, 20vw, 300px); /* Adjust the width of the icon area */
+  }
+   
+  .searchIcon  {
+    color: #9f6f6f;
+    margin-right: 5px;
+    background-color: inherit;
+  }
+  
+  .searchInput {
+    border: none;
+    outline: none;
+    background-color: #48484d;
+    flex-grow: 1; /* This allows the input field to take up the remaining space */
+  }
+
+
+
+
+.topbar{
+    width: 100%; /* Adjust the width of the icon area */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: inherit;
+}
+
+.sendIcon{
+    margin-right: 5px;
+    background-color: inherit;
+    rotate: -15deg;
+}
+
+.AddPhoto{
+    width: 150px;;
+    height: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 15px;
+    background: linear-gradient(to bottom, #dc6445 0%, #e29a63 100%);
+}
+
+.AddPhoto span{
+   background-color: none;
+   font-size: 20px;
+}
+
+.feature{
+    width:300px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;   
+}
+.post{
+    overflow: scroll;
+    width: 100%;
+    height: 100%;
+}
+
+
+.title{
+    width: 100%;
+    float: left;
+}
+.postContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 20px;  /* adjust this value for the gap you want */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.postImgContainer {
+    overflow: hidden;
+    position: relative;
+ 
+}
+
+.postImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+   
+}
+
+.likeIcon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+    z-index: 1;
+    background-color: inherit;
+}
+
+.commentIcon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: white;
+    z-index: 1;
+    background-color: inherit;
+}
+
+
+
+
+@media (max-width: 768px) {
+   
+    .searchbar {
+      display: none;
+    }
+
+  
+
+  }
