@@ -45,8 +45,12 @@ export default function Home() {
             {posts.map((post, i) => (
               <div key={i} className="postImgContainer">
                 <img src={`assests/${post}`} alt="" className="postImg"/>
+                <div className="postInfo">
                 <FavoriteBorderRoundedIcon className="likeIcon"/>
+                <span className="likeCount">100</span>
                 <MapsUgcOutlinedIcon className="commentIcon"/>
+                <span className="commentCount">100</span>
+                </div>
               </div>
             ))}
           </div>

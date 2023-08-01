@@ -26,7 +26,8 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    background-color: #2d2d30;
+    background-color: #171718;
+    border-radius: 0px 10px 10px 0px;
 }
 
 .topbarContainer div{
@@ -40,7 +41,7 @@
     height: 250px;
     flex-direction: column;
     justify-content: space-evenly;
-    background-color: #2d2d30;
+   
 }
 
 .profiledetails {
