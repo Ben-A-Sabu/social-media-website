@@ -15,9 +15,9 @@ const ICONS = [
   { component: LogoutIcon, name: "Logout" },
 ];
 
-export default function Topbar() {
+export default function Topbar(props) {
   return (
-    <div>
+    <div id={props.id}>
       <img src="assests/logo.png" alt="" className="logo" />
       <div className="topbarContainer">
         <div className='profileContainer'>

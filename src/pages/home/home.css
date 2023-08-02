@@ -23,9 +23,7 @@
     background: transparent;
 }
 
-.Homecontainer{
-    background-color: #3c434e;
-}
+
 
 
 
@@ -119,9 +117,11 @@
 }
 
 .postImgContainer {
+    border: 1px solid #ccc;
+    border-radius: 10px;
     position: relative;
     width: 100%;
-    max-width: 300px;
+    max-width: clamp(450px, 20vw, 500px);
     margin: 15px;
 
 }
@@ -155,17 +155,46 @@
     color: white;
 }
 
+.profilepart div{
+    display:none;
+}
 
 
 
-
-@media (max-width: 768px) {
-   
+@media (max-width: 768px) {   
     .searchbar {
       display: none;
     }
+   
+    #hometopbar{
+        z-index: 2;
+    }
+
+    .postContainer{
+        width: 100%;
+    }
+
+    .feature{
+        background-color:inherit;
+        padding: 10px;
+        border-radius: 10px;
+        position: fixed;
+        bottom: 80px;
+        z-index: 2;
+        right: 0;
+    }
+    .profilepart{
+        height: 30vh;
+    }
+
 
     
-  
-
   }
+
+
+
+     
+    
+    
+    
+    
