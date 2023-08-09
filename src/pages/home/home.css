@@ -23,10 +23,9 @@
     background: transparent;
 }
 
-
-
-
-
+::-webkit-scrollbar-thumb{
+    background: transparent;
+}
 .searchbar {
     display: flex;
     align-items: center;
@@ -110,20 +109,19 @@
 }
 
 .postContainer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    width: 90%;
+    column-count: 3;
+    column-gap: 10px;
+    width:95% /* Adjust the width of the icon area */
 }
 
 .postImgContainer {
     border: 1px solid #ccc;
     border-radius: 10px;
     position: relative;
-    width: 100%;
-    max-width: clamp(450px, 20vw, 500px);
+    display: inline-block;
     margin: 15px;
-
+    width: 95%;
+    break-inside: avoid;
 }
 
 .postImg {
@@ -134,7 +132,6 @@
 }
 
 .postInfo {
-
     height: 30px;
     width: 100%;
     align-items: center;
@@ -159,6 +156,14 @@
     display:none;
 }
 
+.profiledetails div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+
+
 
 
 @media (max-width: 768px) {   
@@ -170,9 +175,7 @@
         z-index: 2;
     }
 
-    .postContainer{
-        width: 100%;
-    }
+ 
 
     .feature{
         background-color:inherit;
@@ -183,14 +186,39 @@
         z-index: 2;
         right: 0;
     }
+    .profilepart div{
+        display: flex;
+
+    }
+
     .profilepart{
-        height: 30vh;
+      height: 25vh;
     }
 
 
     
   }
 
+
+  @media (max-width: 1200px) {
+    .postContainer {
+        column-count: 3;
+    
+    }
+}
+
+@media (max-width: 800px) {
+    .postContainer {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 600px) {
+    .postContainer {
+        column-count: 1;
+  
+    }
+}
 
 
      

@@ -18,11 +18,19 @@ const posts = [
   'b6.jpeg',
   'b7.jpeg',
   'b8.jpeg',
+  'b2.jpeg',
+  'b1.jpeg',
+  'b3.jpeg',
+  'b4.jpeg',
+  'b5.jpeg',
+  'b6.jpeg',
+  'b7.jpeg',
+  'b8.jpeg',
 ];
 
 export default function Home() {
   return (
-    <div className="row">
+    <div className="row Home">
       <Topbar id="hometopbar" />
       <div className="profilepart"></div>
       <Body>
