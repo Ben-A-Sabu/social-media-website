@@ -1,22 +1,4 @@
-*{
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto', sans-serif;
-}
 
-.row{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.col{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    
-}
 
 ::-webkit-scrollbar{
     width: 0px;
@@ -26,6 +8,8 @@
 ::-webkit-scrollbar-thumb{
     background: transparent;
 }
+
+
 .searchbar {
     display: flex;
     align-items: center;
@@ -50,16 +34,27 @@
     flex-grow: 1; /* This allows the input field to take up the remaining space */
   }
 
+.ser_feat_area{
+    width: 70vw;
+  
+}
+
+  .friendsRow{
+    gap:10px;
+    width:75vw;
+    height: 50vh;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    
+  }
+
 
 
 
 .topbar{
-    width: 80%; /* Adjust the width of the icon area */
-    padding: 0 0 20px 0;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: inherit;
+    width: 100%; /* Adjust the width of the icon area */
+    height: 25vh;
+    gap: 10px;
 }
 
 .sendIcon{
@@ -79,12 +74,11 @@
 }
 
 .AddPhoto span{
-   background-color: none;
    font-size: 20px;
 }
 
 .feature{
-    width:clamp(250px, 20vw, 500px); /* Adjust the width of the icon area */
+    width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;   
@@ -92,10 +86,10 @@
 
 
 .post{
-    overflow-x: hidden;
     overflow-y: scroll;
+    overflow-x: scroll;
     width: 100%;
-    height: 100%;
+   
 }
 
 
@@ -111,13 +105,13 @@
 .postContainer {
     column-count: 3;
     column-gap: 10px;
-    width:95% /* Adjust the width of the icon area */
+    width:95%; /* Adjust the width of the icon area */
+
 }
 
 .postImgContainer {
     border: 1px solid #ccc;
     border-radius: 10px;
-    position: relative;
     display: inline-block;
     margin: 15px;
     width: 95%;
@@ -126,8 +120,6 @@
 
 .postImg {
     width: 100%;
-    height: auto;
-    display: block;
     border-radius: 10px;
 }
 
@@ -152,59 +144,45 @@
     color: white;
 }
 
-.profilepart div{
-    display:none;
-}
-
-.profiledetails div {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-
-
-
-
 
 @media (max-width: 768px) {   
     .searchbar {
       display: none;
     }
-   
-    #hometopbar{
-        z-index: 2;
-    }
-
- 
-
     .feature{
         background-color:inherit;
         padding: 10px;
         border-radius: 10px;
         position: fixed;
         bottom: 80px;
-        z-index: 2;
+
         right: 0;
     }
-    .profilepart div{
-        display: flex;
 
+    .FrndTag{
+        display: none;
     }
 
-    .profilepart{
-      height: 25vh;
+    .friendsRow{
+        width: 90%;
     }
 
-
-    
+    .post{
+        height: 68%;
+    }
+   
+ 
   }
+
+
 
 
   @media (max-width: 1200px) {
     .postContainer {
         column-count: 3;
-    
     }
+
+    
 }
 
 @media (max-width: 800px) {
@@ -215,14 +193,14 @@
 
 @media (max-width: 600px) {
     .postContainer {
-        column-count: 1;
+        column-count: 2;
   
     }
+
+   
 }
 
 
      
-    
-    
     
     

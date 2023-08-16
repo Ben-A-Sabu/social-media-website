@@ -1,0 +1,85 @@
+.profileImg{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    box-shadow: 0px 0px 10px 0px #ffffff;
+    cursor: pointer;
+    gap: 10px;
+}
+
+.profileContainer{
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-size: clamp(10px, 2vw, 20px);
+    gap: 10px;
+   
+}
+
+
+
+
+.profileImgContainer .Icon{
+    width:80px;
+    height:80px;
+    border-radius: 50%;
+    background-color: #48484d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+
+}
+
+
+.IconName,.profileElmt{
+    font-size: 15px;
+    font-weight: 500;
+    color: #ffffff;
+    text-align: center;
+    
+}
+  
+  .profiledetails .postNumber,
+  .profiledetails .followerNumber,
+  .profiledetails .followingNumber {
+    font-size: 1.5em; /* make the number larger */
+    font-weight: bold; /* make the number bold */
+    flex-direction: column;
+  }
+  
+.profiledetails{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+
+@media (max-width: 768px) { /* This is a common breakpoint for tablets and below */
+
+
+
+   .profileImg{
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    box-shadow: 0px 0px 10px 0px #ffffff;
+    cursor: pointer;
+   }
+   .profiledetails  {
+    display: none;
+ }
+
+}
+
+
+
+

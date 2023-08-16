@@ -8,7 +8,7 @@ export default function Login(){
 
 
     return(
-        <div>
+        <div className='login'>
         <div className="Loginbody">
             <form className='col'>
             <CloseIcon className="closeicon"/>

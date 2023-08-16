@@ -4,29 +4,13 @@
     font-family: 'Roboto', sans-serif;
 }
 
-.row{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-}
-
-.col{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    
-}
 
 .bodycontainer{
     width: 100vw;
     height:100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #3c434e;
+    background-color: #2b3946;
 }
 
 
