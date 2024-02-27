@@ -1,55 +1,44 @@
-*{
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto', sans-serif; 
-    color:white ;
-}
-
-
-.topbarContainer{
-    height:100vh;
-    width:clamp(100px, 25vw, 250px); /* Adjust the width of the icon area */
+.topbarContainer {
+    height: 100vh;
+    width: clamp(100px, 25vw, 250px);
+    /* Adjust the width of the icon area */
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     background-color: #171718;
     border-radius: 0px 10px 10px 0px;
+    color: aliceblue;
 }
 
 
 
-
-
-
-
-.topbarIcon .Icon,span {
+.topbarIcon .Icon,
+span {
     cursor: pointer;
-    font-size: 30px; /* Adjust the size of the icon */
+    font-size: 30px;
+    /* Adjust the size of the icon */
 
 }
 
 
-
-
-
-
-.logo{
+.logo {
     position: fixed;
     width: 65px;
     height: 60px;
 }
 
-.IconName{
+.IconName {
     font-size: 15px;
     font-weight: 500;
     color: #ffffff;
     text-align: center;
-    
+
 }
 
-.topbarIcon{
-    width: clamp(80px, 20vw, 200px); /* Adjust the width of the icon area */
+.topbarIcon {
+    width: clamp(80px, 20vw, 200px);
+    /* Adjust the width of the icon area */
     cursor: pointer;
     transition: 0.3s;
     display: flex;
@@ -60,14 +49,10 @@
 
 
 
-  
-
-
-  
 .notificationCount {
     position: relative;
     bottom: 32%;
-    left:-25px;
+    left: -25px;
     background-color: red;
     color: white;
     border-radius: 50%;
@@ -78,8 +63,9 @@
 
 
 
-@media (max-width: 768px) { /* This is a common breakpoint for tablets and below */
-    
+@media (max-width: 768px) {
+    /* This is a common breakpoint for tablets and below */
+
     .topbarContainer {
         position: fixed;
         display: flex;
@@ -87,31 +73,30 @@
         bottom: 0;
         left: 0;
         right: 0;
-        height: 60px; /* Adjust according to your design */
+        height: 60px;
+        /* Adjust according to your design */
         width: 100%;
-         padding: 5px; /* Adjust according to your design */
+        padding: 5px;
+        /* Adjust according to your design */
         border-radius: 0px;
 
     }
 
     .IconName {
-        display: none; /* Hide icon name */
+        display: none;
+        /* Hide icon name */
     }
 
-  
+
 
 
 
     .logo {
-       top: 0;
-       left: 0;
+        top: 0;
+        left: 0;
     }
 
 
-  
-  
+
+
 }
-
-
-
-

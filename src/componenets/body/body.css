@@ -1,16 +1,8 @@
-*{
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto', sans-serif;
-}
-
-
-.bodycontainer{
+.bodycontainer {
     width: 100vw;
-    height:100vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     background-color: #2b3946;
+    color: white;
 }
-
-

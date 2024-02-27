@@ -1,0 +1,23 @@
+.Conatiner404 {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    background-color: #000000;
+}
+
+.error404 {
+    color: #ff0000;
+    font-size: 100px;
+    font-weight: 700;
+}
+
+.errorresolved {
+    color: #000000;
+    font-size: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+}

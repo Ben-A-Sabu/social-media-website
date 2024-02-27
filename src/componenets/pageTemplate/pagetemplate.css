@@ -1,11 +1,9 @@
-
-
-::-webkit-scrollbar{
+::-webkit-scrollbar {
     width: 0px;
     background: transparent;
 }
 
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
     background: transparent;
 }
 
@@ -17,54 +15,59 @@
     background-color: #3d3d41;
     padding: 7px;
     margin: 10px 0;
-    height: clamp(25px, 10vw, 30px); /* Adjust the height of the icon area */
-    width: clamp(250px, 20vw, 300px); /* Adjust the width of the icon area */
-  }
-   
-  .searchIcon  {
+    height: clamp(25px, 10vw, 30px);
+    /* Adjust the height of the icon area */
+    width: clamp(250px, 20vw, 300px);
+    /* Adjust the width of the icon area */
+}
+
+.searchIcon {
     margin-right: 5px;
     background-color: inherit;
 
-  }
-  
-  .searchInput {
+}
+
+.searchInput {
     border: none;
     outline: none;
     background-color: #3d3d41;
-    flex-grow: 1; /* This allows the input field to take up the remaining space */
-  }
-
-.ser_feat_area{
-    width: 70vw;
-  
+    flex-grow: 1;
+    /* This allows the input field to take up the remaining space */
 }
 
-  .friendsRow{
-    gap:10px;
-    width:75vw;
+.ser_feat_area {
+    width: 70vw;
+
+}
+
+.friendsRow {
+    gap: 10px;
+    width: 75vw;
     height: 50vh;
     overflow-y: scroll;
     overflow-x: scroll;
-    
-  }
+
+}
 
 
 
 
-.topbar{
-    width: 100%; /* Adjust the width of the icon area */
+.topbar {
+    width: 100%;
+    /* Adjust the width of the icon area */
     height: 25vh;
     gap: 10px;
 }
 
-.sendIcon{
+.sendIcon {
     margin-right: 5px;
     background-color: inherit;
     rotate: -15deg;
 }
 
-.AddPhoto{
-    width: 150px;;
+.AddPhoto {
+    width: 150px;
+    ;
     height: 50px;
     display: flex;
     justify-content: space-evenly;
@@ -73,28 +76,28 @@
     background: linear-gradient(to bottom, #dc6445 0%, #e29a63 100%);
 }
 
-.AddPhoto span{
-   font-size: 20px;
+.AddPhoto span {
+    font-size: 20px;
 }
 
-.feature{
+.feature {
     width: 100%;
     display: flex;
     justify-content: space-around;
-    align-items: center;   
+    align-items: center;
 }
 
 
-.post{
+.post {
     overflow-y: scroll;
     overflow-x: scroll;
     width: 100%;
-   
+
 }
 
 
 
-.title{
+.title {
     width: 100%;
     font-size: clamp(1rem, 5vw, 2rem);
     text-align: left;
@@ -105,7 +108,8 @@
 .postContainer {
     column-count: 3;
     column-gap: 10px;
-    width:95%; /* Adjust the width of the icon area */
+    width: 95%;
+    /* Adjust the width of the icon area */
 
 }
 
@@ -132,25 +136,28 @@
     align-items: center;
 }
 
-.likeIcon, .commentIcon {
+.likeIcon,
+.commentIcon {
     position: relative;
     color: rgb(0, 0, 0);
     margin: 5px;
 }
 
-.likeCount, .commentCount {
+.likeCount,
+.commentCount {
     margin: 5px;
     font-size: 16px;
     color: white;
 }
 
 
-@media (max-width: 768px) {   
+@media (max-width: 768px) {
     .searchbar {
-      display: none;
+        display: none;
     }
-    .feature{
-        background-color:inherit;
+
+    .feature {
+        background-color: inherit;
         padding: 10px;
         border-radius: 10px;
         position: fixed;
@@ -159,30 +166,30 @@
         right: 0;
     }
 
-    .FrndTag{
+    .FrndTag {
         display: none;
     }
 
-    .friendsRow{
+    .friendsRow {
         width: 90%;
     }
 
-    .post{
+    .post {
         height: 68%;
     }
-   
- 
-  }
+
+
+}
 
 
 
 
-  @media (max-width: 1200px) {
+@media (max-width: 1200px) {
     .postContainer {
         column-count: 3;
     }
 
-    
+
 }
 
 @media (max-width: 800px) {
@@ -194,13 +201,8 @@
 @media (max-width: 600px) {
     .postContainer {
         column-count: 2;
-  
+
     }
 
-   
+
 }
-
-
-     
-    
-    
