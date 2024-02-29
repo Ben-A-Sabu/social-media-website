@@ -1,4 +1,7 @@
 import { initializeApp } from "firebase/app";
+import { getDatabase, set, get, ref } from 'firebase/database';
+import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from "firebase/auth";
+import React from 'react';
 
 
 // Your web app's Firebase configuration
@@ -14,4 +17,113 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export { app };
+const auth = getAuth(app);
+let db = getDatabase(app);
+
+
+async function signinorout() {
+    console.log("Signing in---------------------**************-----------------");
+    if (auth.currentUser) {
+        console.log("Signing out");
+        auth.signOut().then(() => {
+            console.log("Succesfuly Signed out");
+            //window.location.href = "/";
+        }).catch((error) => {
+            console.log("Error");
+        });
+    } else {
+        let provider = new GoogleAuthProvider();
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                // This gives you a Google Access Token. You can use it to access the Google API. 
+                //const credential = GoogleAuthProvider.credentialFromResult(result);
+                //const token = credential.accessToken;
+                // The signed-in user info.
+                const user = result.user;
+                console.log(user, "line 43 reached");
+
+                createinitialuserdata(user);
+                return user;
+            }).catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.email;
+                // The AuthCredential type that was used.
+                const credential = GoogleAuthProvider.credentialFromError(error);
+                alert("Error signing in");
+                console.log(errorCode, errorMessage, email, credential);
+                // ...
+            });
+    }
+}
+
+async function createinitialuserdata(user) {
+    //  check if userdetails already exists
+
+    const existingSnapshot = await (get(ref(db, 'users/' + user.uid)))
+    console.log(existingSnapshot);
+
+    if (existingSnapshot.exists()) {
+        console.log("User already exists");
+        return;
+    }
+
+    let userDetail = {
+        Username: user.displayName,
+        ProfImg: user.photoURL,
+        password: user.uid,
+        PostNo: 0,
+        FollowerNo: 0,
+        FollowingNo: 0,
+        ProfileName: user.displayName,
+        friendArray: [],
+        postArray: [],
+        Email: user.email,
+    };
+
+    set(ref(db, 'users/' + user.uid), userDetail)
+        .then(() => {
+            alert("Successfully signed in");
+        })
+        .catch((error) => {
+            console.error("Error writing to Firebase", error);
+        });
+
+}
+
+async function getuserdetails(auth) {
+    if (auth.currentUser) {
+        const snapshot = await get(ref(db, 'users/' + auth.currentUser.uid));
+        if (snapshot.exists()) {
+            console.log(snapshot.val());
+            return snapshot.val();
+        } else {
+            console.log("No data available");
+        }
+    }
+}
+
+async function setuserdetails(auth, userDetail) {
+    if (auth.currentUser) {
+        set(ref(db, 'users/' + auth.currentUser.uid), userDetail)
+            .then(() => {
+                alert("User details updated");
+            })
+            .catch((error) => {
+                console.error("Error writing to Firebase", error);
+            });
+    }
+}
+
+const FirebaseContext = React.createContext(null);
+export const useFirebase = () => React.useContext(FirebaseContext);
+
+export const FirebaseProvider = (props) => {
+    return (
+        <FirebaseContext.Provider value={{ auth, db, signinorout, getuserdetails, setuserdetails }}>
+            {props.children}
+        </FirebaseContext.Provider>
+    )
+}

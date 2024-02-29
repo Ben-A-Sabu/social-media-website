@@ -4,10 +4,7 @@ import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 
 
 const FriendProfile = ({ onProfileClick, showOptions }) => (
-    <div
-        className='profileImgContainer col'
-        onClick={onProfileClick}  // This will handle the click event
-    >
+    <div className='profileImgContainer col' onClick={onProfileClick}>
         <AccountCircleRoundedIcon className="Icon ProfileImg" />
         <span className="IconName">Name</span>
 

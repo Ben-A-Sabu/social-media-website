@@ -5,7 +5,6 @@ import "./profile.css";
 export default function Profile(props) {
   // Destructure props to access properties from props.list
   const { profImg, postno, followerno, followingno, profilename } = props.list;
-  console.log(postno, followerno, followingno, profilename);
 
   return (
     <div className='profileContainer'>

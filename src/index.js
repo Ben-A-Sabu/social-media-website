@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom/client';
 import Home from './pages/home/home';
 import Login from './pages/login/login';
 import ViewProfile from './pages/profilepage/viewprofile';
-import Register from './pages/login/register';
 import NotFoundPage from './pages/PageNotFound/NotFoundPage';
+import { FirebaseProvider } from './firebase';
 import "./App.css";
+
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
@@ -29,18 +30,15 @@ const router = createBrowserRouter([
     path: '/profile/:profileid',
     element: <ViewProfile />,
   },
-  {
-    path: '/register',
-    element: <Register />,
-  }
+
 ]);
 
 // router provider is used to deffer out entry point to router variable created by createBrowserRouter
 root.render(
   <React.StrictMode>
-
-    <RouterProvider router={router} />
-
+    <FirebaseProvider>
+      <RouterProvider router={router} />
+    </FirebaseProvider>
   </React.StrictMode>
 );
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import PageTemplate from '../../componenets/pageTemplate/pagetemplate';
+import { useFirebase } from '../../firebase';
 
 
 
@@ -24,6 +25,18 @@ const posts = [
 
 
 export default function Home() {
+  let user = null;
+  const firebase = useFirebase();
+  const auth = firebase.auth;
+  console.log("Getting user details", auth.currentUser);
+  async function getdetails() {
+    console.log("Getting user details", auth.currentUser);
+    user = await firebase.getuserdetails(auth);
+    console.log(user);
+  }
+
+  getdetails();
+
 
 
 

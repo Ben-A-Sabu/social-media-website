@@ -7,19 +7,26 @@ import HomeIcon from '@mui/icons-material/Home';
 import MessageIcon from '@mui/icons-material/Message';
 import FollowIcon from '@mui/icons-material/PersonAddAlt';
 import Profile from '../profile/profile';
-import { Link } from "react-router-dom";
 import "./topbar.css";
+import { useFirebase } from '../../firebase';
+
+function isWorking() {
+  window.location.href = "/home";
+}
+
 
 export default function Topbar({ showIcons, myList, profileIndex }) {
 
+
+  const firebase = useFirebase();
   const ICONS = [
-    { component: HomeIcon, name: "Home", isVisible: showIcons.home, onclick: () => { <Link to="/">View Profile</Link> } },
+    { component: HomeIcon, name: "Home", isVisible: showIcons.home, onclick: isWorking },
     { component: SearchIcon, name: "Search", isVisible: showIcons.search },
     { component: NotificationsIcon, name: "Notifications", count: 5, isVisible: showIcons.notifications },
     { component: PersonAddAltIcon, name: "New Group", isVisible: showIcons.newGroup },
     { component: MessageIcon, name: "Message", isVisible: showIcons.message },
     { component: FollowIcon, name: "Follow", isVisible: showIcons.follow },
-    { component: LogoutIcon, name: "Logout", isVisible: showIcons.logout }
+    { component: LogoutIcon, name: "Logout", isVisible: showIcons.logout, onclick: () => firebase.signinorout() }
   ];
 
 
@@ -31,8 +38,8 @@ export default function Topbar({ showIcons, myList, profileIndex }) {
         <Profile list={myList} index={profileIndex} class="profile" />
         {ICONS.map((icon, i) => (
           icon.isVisible &&
-          <div key={i} className='topbarIcon'>
-            <icon.component className="Icon" />
+          <div key={i} className="topbarIcon" onClick={icon.onclick}>
+            <icon.component className="iconImg" />
             {icon.count && <span className="notificationCount">{icon.count}</span>}
             <span className="IconName">{icon.name}</span>
           </div>
