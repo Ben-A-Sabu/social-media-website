@@ -1,32 +1,13 @@
 import './login.css';
 import { Google } from '@mui/icons-material';
 import React from 'react'; // Import React and useState
-import { useFirebase } from '../../firebase';
-import { useEffect } from 'react';
+import { signinorout } from '../../firebase'; // Import the signinorout function from firebase.js
 
 
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import '../../componenets/profile/profile.css';
 
 export default function Login() {
-
-    const firebase = useFirebase();
-
-    useEffect(() => {
-
-        firebase.auth.onAuthStateChanged(user => {
-            if (user) {
-                console.log("User is logged in", user);
-                window.location.href = "/home";
-            }
-            else {
-                console.log("User is logged out");
-            }
-        });
-    }
-        , [
-            firebase.auth
-        ]);
 
     return (
         <div className='login'>
@@ -39,7 +20,7 @@ export default function Login() {
                 </div>
 
                 <div>Sign In with  Google </div>
-                <div className='LogBtn' onClick={() => firebase.signinorout()}  > Google {<Google />}</div>
+                <div className='LogBtn' onClick={() => signinorout()}  > Google {<Google />}</div>
             </div>
         </div>
     );

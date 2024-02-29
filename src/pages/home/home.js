@@ -1,7 +1,9 @@
 import React from 'react';
 import PageTemplate from '../../componenets/pageTemplate/pagetemplate';
-import { useFirebase } from '../../firebase';
-
+import { getuserdetails, auth } from '../../firebase';
+import { onAuthStateChanged } from 'firebase/auth';
+import { useState, useEffect } from 'react';
+import { Details } from '@mui/icons-material';
 
 
 const posts = [
@@ -25,17 +27,34 @@ const posts = [
 
 
 export default function Home() {
-  let user = null;
-  const firebase = useFirebase();
-  const auth = firebase.auth;
-  console.log("Getting user details", auth.currentUser);
-  async function getdetails() {
-    console.log("Getting user details", auth.currentUser);
-    user = await firebase.getuserdetails(auth);
-    console.log(user);
-  }
+  const [userdetails, setuserdetails] = useState({ Username: "User", Email: "Email", ProfImg: "https://www.pngfind.com/pngs/m/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.png" });
+  const [myList, setmyList] = useState({ profImg: userdetails.ProfImg, postno: 10, followerno: 100, followingno: 1000, profilename: userdetails.Username, friendArray: [], followingArray: [], postArray: [] });
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        let username = user.displayName;
+        let email = user.email;
+        let photoURL = user.photoURL;
+        let usserdetails = { Username: username, Email: email, ProfImg: photoURL };
+        setuserdetails(usserdetails);
+        getdetails();
 
-  getdetails();
+
+      } else {
+        setuserdetails({ Username: "User", Email: "Email", ProfImg: "https://www.pngfind.com/pngs/m/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.png" });
+      }
+    }
+    );
+    return () => {
+      unsubscribe();
+    };
+  }, [auth]);
+
+  let user = null;
+  async function getdetails() {
+    user = await getuserdetails(auth);
+    setmyList({ profImg: user.ProfImg, postno: user.PostNo, followerno: user.FollowerNo, followingno: user.FollowingNo, profilename: user.Username, friendArray: user.friendArray, followingArray: user.followingArray, postArray: user.postArray });
+  }
 
 
 
@@ -52,18 +71,8 @@ export default function Home() {
     follow: false // Hide follow icon
   };
 
-  let myList =
-  {
-    profImg: null,// here the profile image will be stored from the backend
-    postno: 10,// here the number of post will be stored from the backend
-    followerno: 100,// here the number of followers will be stored from the backend
-    followingno: 1000,// here the number of following will be stored from the backend
-    profilename: "Username",// here the username will be stored from the backend
-    friendArray: [], // here the fiends and there value from the backend will be stored
-    followingArray: [], // here the following and there value from the backend will be stored
-    postArray: [] // here the post and there value from the backend will be stored
-  }
-    ;
+
+
   let pageName = "Home";
   return (
     <PageTemplate props={{ showIcons, myList, posts, pageName }} />

@@ -4,7 +4,6 @@ import Home from './pages/home/home';
 import Login from './pages/login/login';
 import ViewProfile from './pages/profilepage/viewprofile';
 import NotFoundPage from './pages/PageNotFound/NotFoundPage';
-import { FirebaseProvider } from './firebase';
 import "./App.css";
 
 
@@ -25,6 +24,7 @@ const router = createBrowserRouter([
   {
     path: '/profile',
     element: <ViewProfile />,
+
   },
   {
     path: '/profile/:profileid',
@@ -36,9 +36,9 @@ const router = createBrowserRouter([
 // router provider is used to deffer out entry point to router variable created by createBrowserRouter
 root.render(
   <React.StrictMode>
-    <FirebaseProvider>
-      <RouterProvider router={router} />
-    </FirebaseProvider>
+
+    <RouterProvider router={router} />
+
   </React.StrictMode>
 );
 

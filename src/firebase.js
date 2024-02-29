@@ -1,7 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, set, get, ref } from 'firebase/database';
 import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from "firebase/auth";
-import React from 'react';
 
 
 // Your web app's Firebase configuration
@@ -17,17 +16,24 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+export { app };
 const auth = getAuth(app);
 let db = getDatabase(app);
+export { auth, db }; // Export the database and authentication
 
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        console.log("User is signed in");
+    } else {
+        console.log("User is signed out");
+    }
+});
 
-async function signinorout() {
-    console.log("Signing in---------------------**************-----------------");
+export function signinorout() {
     if (auth.currentUser) {
         console.log("Signing out");
         auth.signOut().then(() => {
             console.log("Succesfuly Signed out");
-            //window.location.href = "/";
         }).catch((error) => {
             console.log("Error");
         });
@@ -97,7 +103,6 @@ async function getuserdetails(auth) {
     if (auth.currentUser) {
         const snapshot = await get(ref(db, 'users/' + auth.currentUser.uid));
         if (snapshot.exists()) {
-            console.log(snapshot.val());
             return snapshot.val();
         } else {
             console.log("No data available");
@@ -105,25 +110,5 @@ async function getuserdetails(auth) {
     }
 }
 
-async function setuserdetails(auth, userDetail) {
-    if (auth.currentUser) {
-        set(ref(db, 'users/' + auth.currentUser.uid), userDetail)
-            .then(() => {
-                alert("User details updated");
-            })
-            .catch((error) => {
-                console.error("Error writing to Firebase", error);
-            });
-    }
-}
 
-const FirebaseContext = React.createContext(null);
-export const useFirebase = () => React.useContext(FirebaseContext);
-
-export const FirebaseProvider = (props) => {
-    return (
-        <FirebaseContext.Provider value={{ auth, db, signinorout, getuserdetails, setuserdetails }}>
-            {props.children}
-        </FirebaseContext.Provider>
-    )
-}
+export { getuserdetails }; // Export the function to get user details

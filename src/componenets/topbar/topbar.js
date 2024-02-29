@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
@@ -7,27 +7,43 @@ import HomeIcon from '@mui/icons-material/Home';
 import MessageIcon from '@mui/icons-material/Message';
 import FollowIcon from '@mui/icons-material/PersonAddAlt';
 import Profile from '../profile/profile';
+import { Link } from "react-router-dom";
 import "./topbar.css";
-import { useFirebase } from '../../firebase';
+import { signinorout, auth } from '../../firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 
-function isWorking() {
-  window.location.href = "/home";
-}
+
 
 
 export default function Topbar({ showIcons, myList, profileIndex }) {
-
-
-  const firebase = useFirebase();
+  const [buttonText, setButtonText] = useState("Log In");
+  // const [userdetails, setuserdetails] = useState(null);
   const ICONS = [
-    { component: HomeIcon, name: "Home", isVisible: showIcons.home, onclick: isWorking },
+    { component: HomeIcon, name: "Home", isVisible: showIcons.home },
     { component: SearchIcon, name: "Search", isVisible: showIcons.search },
     { component: NotificationsIcon, name: "Notifications", count: 5, isVisible: showIcons.notifications },
     { component: PersonAddAltIcon, name: "New Group", isVisible: showIcons.newGroup },
     { component: MessageIcon, name: "Message", isVisible: showIcons.message },
     { component: FollowIcon, name: "Follow", isVisible: showIcons.follow },
-    { component: LogoutIcon, name: "Logout", isVisible: showIcons.logout, onclick: () => firebase.signinorout() }
+    { component: LogoutIcon, name: buttonText, isVisible: showIcons.logout, onclick: signinorout }
   ];
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setButtonText("Log Out");
+      } else {
+        setButtonText("Log In");
+      }
+    }
+    );
+    return () => {
+      unsubscribe();
+    };
+  }, [auth]);
+
+
+
+
 
 
 
@@ -45,6 +61,7 @@ export default function Topbar({ showIcons, myList, profileIndex }) {
           </div>
         ))}
       </div>
+
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import Topbar from "../../componenets/topbar/topbar";
 import Body from "../../componenets/body/body";
@@ -7,11 +7,15 @@ import AddPhotoAlternateRoundedIcon from '@mui/icons-material/AddPhotoAlternateR
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import FriendProfile from "../../componenets/friendprofile/friendprofile";
 import Post from "../post/post";
+import { getuserdetails, auth } from '../../firebase';
 import "./pagetemplate.css";
+import { onAuthStateChanged } from 'firebase/auth';
 
 
 export default function PageTemplate({ props }) {
     const [selectedFriend, setSelectedFriend] = useState(null);
+
+
 
     const handleProfileClick = idx => {
         if (selectedFriend === idx) {
