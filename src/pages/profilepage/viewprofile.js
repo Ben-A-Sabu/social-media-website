@@ -1,31 +1,12 @@
-import React from 'react';
 import PageTemplate from '../../componenets/pageTemplate/pagetemplate';
-
-const posts = [
-    'b2.jpeg',
-    'b1.jpeg',
-    'b3.jpeg',
-    'b4.jpeg',
-    'b5.jpeg',
-    'b6.jpeg',
-    'b7.jpeg',
-    'b8.jpeg',
-    'b2.jpeg',
-    'b1.jpeg',
-    'b3.jpeg',
-    'b4.jpeg',
-    'b5.jpeg',
-    'b6.jpeg',
-    'b7.jpeg',
-    'b8.jpeg',
-];
+import { useState,useEffect } from 'react';
 
 
+export default function Viewprofile({userdet, userposts}) {
 
-export default function Viewprofile() {
-
-
-
+    const [myList, setmyList] = useState(userdet);
+    const [posts, setposts] = useState(userposts);
+    
     let showIcons = {
         home: true,
         search: true,
@@ -36,18 +17,18 @@ export default function Viewprofile() {
         follow: true
     };
 
-    let myList =
-    {
-        profImg: null,// here the profile image will be stored from the backend
-        postno: 10,// here the number of post will be stored from the backend
-        followerno: 100,// here the number of followers will be stored from the backend
-        followingno: 1000,// here the number of following will be stored from the backend
-        profilename: "Username",// here the username will be stored from the backend
-        friendArray: [], // here the fiends and there value from the backend will be stored
-        followingArray: [], // here the following and there value from the backend will be stored
-        postArray: [] // here the post and there value from the backend will be stored
-    }
+    useEffect(() => {
+        if (userdet && userposts) {
+            setmyList(userdet);
+            setposts(userposts);
+        }
+        else {
+            console.log("No user---from view profile---");
+        }
+    }, [userdet, userposts]);
+
+
     return (
-        <PageTemplate props={{ showIcons, myList, posts, pageName: "Profile" }} />
-    );
+            <PageTemplate props={{ showIcons, myList, posts, pageName: "Profile" }} />
+        );
 }

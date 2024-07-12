@@ -16,10 +16,11 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export { app };
 const auth = getAuth(app);
-let db = getDatabase(app);
-export { auth, db }; // Export the database and authentication
+const db = getDatabase(app);
+export { app, auth, db }; // Export the database and authentication
+
+
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -41,15 +42,8 @@ export function signinorout() {
         let provider = new GoogleAuthProvider();
         signInWithPopup(auth, provider)
             .then((result) => {
-                // This gives you a Google Access Token. You can use it to access the Google API. 
-                //const credential = GoogleAuthProvider.credentialFromResult(result);
-                //const token = credential.accessToken;
-                // The signed-in user info.
                 const user = result.user;
-                console.log(user, "line 43 reached");
-
                 createinitialuserdata(user);
-                return user;
             }).catch((error) => {
                 // Handle Errors here.
                 const errorCode = error.code;
@@ -66,10 +60,8 @@ export function signinorout() {
 }
 
 async function createinitialuserdata(user) {
-    //  check if userdetails already exists
 
-    const existingSnapshot = await (get(ref(db, 'users/' + user.uid)))
-    console.log(existingSnapshot);
+    const existingSnapshot = await (get(ref(db, 'users/' + user.uid)));
 
     if (existingSnapshot.exists()) {
         console.log("User already exists");
@@ -110,5 +102,29 @@ async function getuserdetails(auth) {
     }
 }
 
+async function setuserdetails(auth, userDetail) {
+    if (auth.currentUser) {
+        set(ref(db, 'users/' + auth.currentUser.uid), userDetail)
+            .then(() => {
+                alert("Successfully updated");
+            })
+            .catch((error) => {
+                console.error("Error writing to Firebase", error);
+            });
+    }
+}
 
-export { getuserdetails }; // Export the function to get user details
+
+async function getdetailsfromuid(uid) {
+    console.log(uid, "uid");
+    const snapshot = await get(ref(db, 'users/' + uid));
+    if (snapshot.exists()) {
+        return snapshot.val();
+    } else {
+        console.log("No data available");
+    }
+}
+
+
+
+export { getuserdetails,setuserdetails,getdetailsfromuid }; // Export the function to get user details

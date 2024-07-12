@@ -7,17 +7,14 @@ import HomeIcon from '@mui/icons-material/Home';
 import MessageIcon from '@mui/icons-material/Message';
 import FollowIcon from '@mui/icons-material/PersonAddAlt';
 import Profile from '../profile/profile';
-import { Link } from "react-router-dom";
 import "./topbar.css";
 import { signinorout, auth } from '../../firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 
 
-
-
-export default function Topbar({ showIcons, myList, profileIndex }) {
+export default function Topbar({ showIcons, myList }) {
   const [buttonText, setButtonText] = useState("Log In");
-  // const [userdetails, setuserdetails] = useState(null);
+
   const ICONS = [
     { component: HomeIcon, name: "Home", isVisible: showIcons.home },
     { component: SearchIcon, name: "Search", isVisible: showIcons.search },
@@ -31,27 +28,20 @@ export default function Topbar({ showIcons, myList, profileIndex }) {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setButtonText("Log Out");
-      } else {
+      }else {
         setButtonText("Log In");
       }
-    }
-    );
+    });
     return () => {
       unsubscribe();
     };
   }, [auth]);
 
-
-
-
-
-
-
   return (
     <div>
-      <img src="assests/logo.png" alt="" className="logo" />
+      <img src="assests/logo.png" alt="chatz logo" className="logo" />
       <div className="topbarContainer">
-        <Profile list={myList} index={profileIndex} class="profile" />
+        <Profile list={myList} class="profile" />
         {ICONS.map((icon, i) => (
           icon.isVisible &&
           <div key={i} className="topbarIcon" onClick={icon.onclick}>
@@ -61,7 +51,6 @@ export default function Topbar({ showIcons, myList, profileIndex }) {
           </div>
         ))}
       </div>
-
     </div>
   );
 }

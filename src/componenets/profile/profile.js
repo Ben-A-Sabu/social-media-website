@@ -1,24 +1,30 @@
 import React from 'react';
-import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import "./profile.css";
+import { useState, useEffect } from 'react';
 
 export default function Profile(props) {
-  // Destructure props to access properties from props.list
-  let userdetails = {
+  const [userdetails, setUserDetails] = useState({
     profimg: props.list.profImg,
     postno: props.list.postno,
     followerno: props.list.followerno,
     followingno: props.list.followingno,
     profilename: props.list.profilename
-  };
+  });
 
+  useEffect(() => {
+    setUserDetails({
+      profimg: props.list.profImg,
+      postno: props.list.postno,
+      followerno: props.list.followerno,
+      followingno: props.list.followingno,
+      profilename: props.list.profilename
+    });
+  }, [props.list]);
 
   return (
     <div className='profileContainer'>
       <div className='profileImgContainer col'>
-        {
-          <img src={userdetails.profimg} alt="profile" className="profileImg" />
-        }
+        <img src={userdetails.profimg} alt="profile" className="profileImg" />
         <span className="IconName">{userdetails.profilename}</span>
       </div>
       <div className='profiledetails'>
