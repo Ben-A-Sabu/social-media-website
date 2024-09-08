@@ -1,7 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, set, get, ref } from 'firebase/database';
-import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from "firebase/auth";
-
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -18,20 +17,12 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export { app };
 const auth = getAuth(app);
-let db = getDatabase(app);
-export { auth, db }; // Export the database and authentication
+const db = getDatabase(app);
 
-onAuthStateChanged(auth, (user) => {
-    if (user) {
-        console.log("User is signed in");
-    } else {
-        console.log("User is signed out");
-    }
-});
+
 
 export function signinorout() {
     if (auth.currentUser) {
-        console.log("Signing out");
         auth.signOut().then(() => {
             console.log("Succesfuly Signed out");
         }).catch((error) => {
@@ -41,33 +32,17 @@ export function signinorout() {
         let provider = new GoogleAuthProvider();
         signInWithPopup(auth, provider)
             .then((result) => {
-                // This gives you a Google Access Token. You can use it to access the Google API. 
-                //const credential = GoogleAuthProvider.credentialFromResult(result);
-                //const token = credential.accessToken;
-                // The signed-in user info.
                 const user = result.user;
                 console.log(user, "line 43 reached");
-
                 createinitialuserdata(user);
                 return user;
             }).catch((error) => {
-                // Handle Errors here.
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // The email of the user's account used.
-                const email = error.email;
-                // The AuthCredential type that was used.
-                const credential = GoogleAuthProvider.credentialFromError(error);
-                alert("Error signing in");
-                console.log(errorCode, errorMessage, email, credential);
-                // ...
+                console.log("Error : ", error);
             });
     }
 }
-
 async function createinitialuserdata(user) {
     //  check if userdetails already exists
-
     const existingSnapshot = await (get(ref(db, 'users/' + user.uid)))
     console.log(existingSnapshot);
 
@@ -111,4 +86,4 @@ async function getuserdetails(auth) {
 }
 
 
-export { getuserdetails }; // Export the function to get user details
+export { getuserdetails, auth, db }; // Export the function to get user details

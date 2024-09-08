@@ -7,7 +7,6 @@ import HomeIcon from '@mui/icons-material/Home';
 import MessageIcon from '@mui/icons-material/Message';
 import FollowIcon from '@mui/icons-material/PersonAddAlt';
 import Profile from '../profile/profile';
-import { Link } from "react-router-dom";
 import "./topbar.css";
 import { signinorout, auth } from '../../firebase';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -17,7 +16,6 @@ import { onAuthStateChanged } from 'firebase/auth';
 
 export default function Topbar({ showIcons, myList, profileIndex }) {
   const [buttonText, setButtonText] = useState("Log In");
-  // const [userdetails, setuserdetails] = useState(null);
   const ICONS = [
     { component: HomeIcon, name: "Home", isVisible: showIcons.home },
     { component: SearchIcon, name: "Search", isVisible: showIcons.search },
@@ -39,13 +37,7 @@ export default function Topbar({ showIcons, myList, profileIndex }) {
     return () => {
       unsubscribe();
     };
-  }, [auth]);
-
-
-
-
-
-
+  },);
 
   return (
     <div>

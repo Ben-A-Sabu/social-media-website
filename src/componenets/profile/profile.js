@@ -1,9 +1,10 @@
 import React from 'react';
-import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
+import { useEffect, useState } from 'react';
 import "./profile.css";
 
 export default function Profile(props) {
-  // Destructure props to access properties from props.list
+
+
   let userdetails = {
     profimg: props.list.profImg,
     postno: props.list.postno,
@@ -11,6 +12,7 @@ export default function Profile(props) {
     followingno: props.list.followingno,
     profilename: props.list.profilename
   };
+
 
 
   return (
