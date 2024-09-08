@@ -1,9 +1,8 @@
-
 import React from "react";
 import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
 import MapsUgcOutlinedIcon from '@mui/icons-material/MapsUgcOutlined';
 
-const Post = ({ imgSrc }) => (
+const  Post = ({ imgSrc }) => (
     <div className="postImgContainer">
         <img src={`assests/${imgSrc}`} alt="" className="postImg" />
         <div className="postInfo">

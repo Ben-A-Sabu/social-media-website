@@ -12,10 +12,12 @@ import { signinorout, auth } from '../../firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 
 
-
-
-export default function Topbar({ showIcons, myList, profileIndex }) {
+export default function Topbar({ showIcons, myList }) {
   const [buttonText, setButtonText] = useState("Log In");
+<<<<<<< HEAD
+=======
+
+>>>>>>> a961048b3868f1a755cc92aa9990c55eb0956609
   const ICONS = [
     { component: HomeIcon, name: "Home", isVisible: showIcons.home },
     { component: SearchIcon, name: "Search", isVisible: showIcons.search },
@@ -29,21 +31,24 @@ export default function Topbar({ showIcons, myList, profileIndex }) {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setButtonText("Log Out");
-      } else {
+      }else {
         setButtonText("Log In");
       }
-    }
-    );
+    });
     return () => {
       unsubscribe();
     };
+<<<<<<< HEAD
   },);
+=======
+  }, [auth]);
+>>>>>>> a961048b3868f1a755cc92aa9990c55eb0956609
 
   return (
     <div>
-      <img src="assests/logo.png" alt="" className="logo" />
+      <img src="assests/logo.png" alt="chatz logo" className="logo" />
       <div className="topbarContainer">
-        <Profile list={myList} index={profileIndex} class="profile" />
+        <Profile list={myList} class="profile" />
         {ICONS.map((icon, i) => (
           icon.isVisible &&
           <div key={i} className="topbarIcon" onClick={icon.onclick}>
@@ -53,7 +58,6 @@ export default function Topbar({ showIcons, myList, profileIndex }) {
           </div>
         ))}
       </div>
-
     </div>
   );
 }

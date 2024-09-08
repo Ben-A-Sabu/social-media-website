@@ -1,31 +1,12 @@
-import React from 'react';
 import PageTemplate from '../../componenets/pageTemplate/pagetemplate';
-
-const posts = [
-    'b2.jpeg',
-    'b1.jpeg',
-    'b3.jpeg',
-    'b4.jpeg',
-    'b5.jpeg',
-    'b6.jpeg',
-    'b7.jpeg',
-    'b8.jpeg',
-    'b2.jpeg',
-    'b1.jpeg',
-    'b3.jpeg',
-    'b4.jpeg',
-    'b5.jpeg',
-    'b6.jpeg',
-    'b7.jpeg',
-    'b8.jpeg',
-];
+import { useState,useEffect } from 'react';
 
 
+export default function Viewprofile({userdet, userposts}) {
 
-export default function Viewprofile() {
-
-
-
+    const [myList, setmyList] = useState(userdet);
+    const [posts, setposts] = useState(userposts);
+    
     let showIcons = {
         home: true,
         search: true,
@@ -36,6 +17,7 @@ export default function Viewprofile() {
         follow: true
     };
 
+<<<<<<< HEAD
     let myList =
     {
         profImg: "https://www.pngfind.com/pngs/m/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.png",
@@ -47,7 +29,20 @@ export default function Viewprofile() {
         followingArray: [],
         postArray: []
     }
+=======
+    useEffect(() => {
+        if (userdet && userposts) {
+            setmyList(userdet);
+            setposts(userposts);
+        }
+        else {
+            console.log("No user---from view profile---");
+        }
+    }, [userdet, userposts]);
+
+
+>>>>>>> a961048b3868f1a755cc92aa9990c55eb0956609
     return (
-        <PageTemplate props={{ showIcons, myList, posts, pageName: "Profile" }} />
-    );
+            <PageTemplate props={{ showIcons, myList, posts, pageName: "Profile" }} />
+        );
 }

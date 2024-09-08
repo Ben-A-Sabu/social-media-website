@@ -15,9 +15,13 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export { app };
 const auth = getAuth(app);
 const db = getDatabase(app);
+<<<<<<< HEAD
+=======
+export { app, auth, db }; // Export the database and authentication
+
+>>>>>>> a961048b3868f1a755cc92aa9990c55eb0956609
 
 
 
@@ -33,18 +37,25 @@ export function signinorout() {
         signInWithPopup(auth, provider)
             .then((result) => {
                 const user = result.user;
+<<<<<<< HEAD
                 console.log(user, "line 43 reached");
+=======
+>>>>>>> a961048b3868f1a755cc92aa9990c55eb0956609
                 createinitialuserdata(user);
-                return user;
             }).catch((error) => {
                 console.log("Error : ", error);
             });
     }
 }
 async function createinitialuserdata(user) {
+<<<<<<< HEAD
     //  check if userdetails already exists
     const existingSnapshot = await (get(ref(db, 'users/' + user.uid)))
     console.log(existingSnapshot);
+=======
+
+    const existingSnapshot = await (get(ref(db, 'users/' + user.uid)));
+>>>>>>> a961048b3868f1a755cc92aa9990c55eb0956609
 
     if (existingSnapshot.exists()) {
         console.log("User already exists");
@@ -85,5 +96,33 @@ async function getuserdetails(auth) {
     }
 }
 
+async function setuserdetails(auth, userDetail) {
+    if (auth.currentUser) {
+        set(ref(db, 'users/' + auth.currentUser.uid), userDetail)
+            .then(() => {
+                alert("Successfully updated");
+            })
+            .catch((error) => {
+                console.error("Error writing to Firebase", error);
+            });
+    }
+}
 
+<<<<<<< HEAD
 export { getuserdetails, auth, db }; // Export the function to get user details
+=======
+
+async function getdetailsfromuid(uid) {
+    console.log(uid, "uid");
+    const snapshot = await get(ref(db, 'users/' + uid));
+    if (snapshot.exists()) {
+        return snapshot.val();
+    } else {
+        console.log("No data available");
+    }
+}
+
+
+
+export { getuserdetails,setuserdetails,getdetailsfromuid }; // Export the function to get user details
+>>>>>>> a961048b3868f1a755cc92aa9990c55eb0956609
